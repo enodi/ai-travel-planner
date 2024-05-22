@@ -1,6 +1,9 @@
 {
   "name": "ai-travel-planner",
   "version": "0.1.0",
+  "engines": {
+    "node": ">=18.20.2"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
