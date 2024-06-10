@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import "@/app/globals.css";
+import { fonts } from "@/src/lib/chakra/fonts";
+import { ChakraProvider } from "@/src/lib/chakra/ChakraProvider";
+import { ReactQueryProvider } from "@/src/lib/react-query/ReactQueryProvider";
 
 export const metadata: Metadata = {
   title: "AI Travel Planner",
@@ -16,9 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <AntdRegistry>{children}</AntdRegistry>
+    <html lang="en" className={fonts.lato.variable}>
+      <body>
+        <ReactQueryProvider>
+          <ChakraProvider>{children}</ChakraProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
