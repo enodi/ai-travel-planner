@@ -1,6 +1,6 @@
 import { z } from "zod"
 import { createClient } from "@supabase/supabase-js"
-import { Database } from "@/supabase/database.types"
+import { Database } from "@/types.gen"
 
 const env = z
   .object({
