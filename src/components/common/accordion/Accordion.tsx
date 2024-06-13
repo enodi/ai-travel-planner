@@ -14,11 +14,16 @@ type Props = PropsWithChildren<{
 
 function Accordion({ title, children }: Props) {
   return (
-    <ChakraAccordion>
+    <ChakraAccordion defaultIndex={[0]} allowMultiple>
       <AccordionItem>
         <h2>
           <AccordionButton>
-            <Box as="span" flex="1" textAlign="left">
+            <Box
+              as="span"
+              flex="1"
+              textAlign="left"
+              className="py-5 text-lg font-bold"
+            >
               {title}
             </Box>
             <AccordionIcon />

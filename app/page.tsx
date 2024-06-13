@@ -1,15 +1,28 @@
 "use client";
 
-import TopSection from "@/src/components/top-section/TopSection";
+import { useState } from "react";
+
 import Layout from "@/src/components/common/layout/Layout";
+import Itinerary from "@/src/components/itinerary/Itinerary";
+import TopSection from "@/src/components/top-section/TopSection";
 import PopularItinerary from "@/src/components/popular-itinerary/PopularItinerary";
 
 export default function Page() {
-  return (
-    <Layout>
-      <section>
+  const [hasFetchItinerary, setHasFetchItinerary] = useState(true);
+
+  if (!hasFetchItinerary) {
+    return (
+      <Layout>
         <TopSection />
         <PopularItinerary />
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <section className="mt-10">
+        <Itinerary />
       </section>
     </Layout>
   );
