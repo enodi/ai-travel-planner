@@ -8,7 +8,7 @@ import TopSection from "@/src/components/top-section/TopSection";
 import PopularItinerary from "@/src/components/popular-itinerary/PopularItinerary";
 
 export default function Page() {
-  const [hasFetchItinerary, setHasFetchItinerary] = useState(true);
+  const [hasFetchItinerary, setHasFetchItinerary] = useState(false);
 
   if (!hasFetchItinerary) {
     return (
