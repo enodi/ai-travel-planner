@@ -34,24 +34,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      notes: {
-        Row: {
-          created_at: string
-          id: string
-          title: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          title?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          title?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never
