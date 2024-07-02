@@ -8,7 +8,7 @@ import TopSection from "@/src/components/top-section/TopSection";
 import PopularItinerary from "@/src/components/popular-itinerary/PopularItinerary";
 
 export default function Page() {
-  const [hasFetchItinerary, setHasFetchItinerary] = useState(false);
+  const [hasFetchItinerary, setHasFetchItinerary] = useState(true);
 
   if (!hasFetchItinerary) {
     return (
@@ -21,7 +21,7 @@ export default function Page() {
 
   return (
     <Layout>
-      <section className="mt-10">
+      <section className="my-10">
         <Itinerary />
       </section>
     </Layout>

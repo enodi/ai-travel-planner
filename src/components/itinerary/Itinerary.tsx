@@ -1,91 +1,53 @@
-import { Card, Image, Stack, Heading, Text, CardBody } from "@chakra-ui/react";
+import { Heading, Button, Flex, Divider } from "@chakra-ui/react";
 
-import Accordion from "@/src/components/common/accordion/Accordion";
-
-const itineraries = [
-  {
-    id: "1",
-    title: "Day 1",
-    events: [
-      {
-        id: "event_1",
-        title: "Morning",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-      {
-        id: "event_2",
-        title: "Afternoon",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-      {
-        id: "event_3",
-        title: "Evening",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-    ],
-  },
-  {
-    id: "2",
-    title: "Day 2",
-    events: [
-      {
-        id: "event_4",
-        title: "Morning",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-      {
-        id: "event_5",
-        title: "Afternoon",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-      {
-        id: "event_6",
-        title: "Evening",
-        description:
-          "Caffè latte is a coffee beverage of Italian origin made with espresso and steamed milk.",
-      },
-    ],
-  },
-];
+import Filters from "@/src/components/itinerary/Filters";
+import PlaceItem from "@/src/components/itinerary/PlaceItem";
+import ItineraryItem from "@/src/components/itinerary/ItineraryItem";
+import { places, itineraries, flights } from "@/src/components/helper";
 
 function Itinerary() {
   return (
-    <>
-      {itineraries.map((itinerary, index) => (
-        <Accordion title={itinerary.title} key={`${index}-${itinerary.title}`}>
-          <div className="flex flex-col gap-4">
-            {itinerary.events.map((event, eventIndex) => (
-              <Card
-                direction={{ base: "column", sm: "row" }}
-                overflow="hidden"
-                variant="outline"
-                key={`${eventIndex}-${event.title}`}
-              >
-                <Image
-                  objectFit="cover"
-                  maxW={{ base: "100%", sm: "200px" }}
-                  src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-                  alt="Caffe Latte"
+    <section>
+      <Flex alignItems={"center"} justifyContent={"space-between"} mt={10}>
+        <Heading as={"h3"}>Your trip to London for 3 days</Heading>
+        <Button colorScheme="blue">Save Itinerary</Button>
+      </Flex>
+      <Divider my={10} />
+      <div className="flex md:flex-row flex-col justify-between gap-8 w-full">
+        <Filters />
+        <div>
+          <div>
+            <h3 className="text-2xl font-bold mb-4">Itinerary</h3>
+            <div className="flex flex-col gap-8">
+              {itineraries.map((itinerary, index) => (
+                <ItineraryItem
+                  key={`${index}-${itinerary.day}`}
+                  itinerary={itinerary}
                 />
-
-                <Stack>
-                  <CardBody>
-                    <Heading size="md">{event.title}</Heading>
-
-                    <Text py="2">{event.description}</Text>
-                  </CardBody>
-                </Stack>
-              </Card>
-            ))}
+              ))}
+            </div>
           </div>
-        </Accordion>
-      ))}
-    </>
+          <Divider my={10} />
+          <div className="flex flex-col gap-8">
+            <h3 className="text-2xl font-bold">Places to stay</h3>
+            <div className="flex md:flex-row flex-col gap-4">
+              {places?.map((place, index) => (
+                <PlaceItem key={`${place.name}-${index}`} place={place} />
+              ))}
+            </div>
+          </div>
+          <Divider my={10} />
+          <div className="flex flex-col gap-8">
+            <h3 className="text-2xl font-bold">Flights</h3>
+            <div className="flex md:flex-row flex-col gap-4">
+              {flights?.map((place, index) => (
+                <PlaceItem key={`${place.name}-${index}`} place={place} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
