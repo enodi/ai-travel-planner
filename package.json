@@ -10,7 +10,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "db:types": "supabase gen types typescript --local > types.gen.ts"
+    "db:codegen": "yarn db:types && yarn db:schema",
+    "db:types": "supabase gen types typescript --local > types.gen.ts",
+    "db:schema": "supabase db dump -f supabase/schema.sql --db-url postgresql://postgres:postgres@localhost:54322/postgres"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",

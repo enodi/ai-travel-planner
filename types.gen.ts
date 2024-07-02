@@ -34,7 +34,71 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      events: {
+        Row: {
+          created_at: string
+          description: string | null
+          event_name: string | null
+          event_type: string | null
+          id: number
+          image_url: string | null
+          location_id: number | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          event_name?: string | null
+          event_type?: string | null
+          id?: number
+          image_url?: string | null
+          location_id?: number | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          event_name?: string | null
+          event_type?: string | null
+          id?: number
+          image_url?: string | null
+          location_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "events_location_id_fkey"
+            columns: ["location_id"]
+            isOneToOne: false
+            referencedRelation: "locations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      locations: {
+        Row: {
+          address: string | null
+          city: string | null
+          country: string | null
+          created_at: string
+          id: number
+          state: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          id?: number
+          state?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          country?: string | null
+          created_at?: string
+          id?: number
+          state?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
