@@ -11,11 +11,13 @@ import PopularItinerary from "@/src/components/popular-itinerary/PopularItinerar
 export default function Page() {
   const [hasFetchItinerary, setHasFetchItinerary] = useState(false);
 
-  const renderButton = () => (
-    <Button onClick={() => setHasFetchItinerary(!hasFetchItinerary)}>
-      Switch
-    </Button>
-  );
+  const renderButton = () => {
+    return (
+      <Button onClick={() => setHasFetchItinerary(!hasFetchItinerary)}>
+        Switch
+      </Button>
+    );
+  };
 
   if (!hasFetchItinerary) {
     return (
