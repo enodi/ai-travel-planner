@@ -1,40 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { Button } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
 
 import Layout from "@/src/components/common/layout/Layout";
-import Itinerary from "@/src/components/itinerary/Itinerary";
 import TopSection from "@/src/components/top-section/TopSection";
 import PopularItinerary from "@/src/components/popular-itinerary/PopularItinerary";
 
+const PROMPT_KEY = "user-prompt";
+
 export default function Page() {
-  const [hasFetchItinerary, setHasFetchItinerary] = useState(false);
+  const router = useRouter();
 
-  const renderButton = () => {
-    return (
-      <Button onClick={() => setHasFetchItinerary(!hasFetchItinerary)}>
-        Switch
-      </Button>
-    );
+  const handleSubmit = async (values: { prompt: string }) => {
+    localStorage.setItem(PROMPT_KEY, values.prompt);
+    router.push("/itineraries");
   };
-
-  if (!hasFetchItinerary) {
-    return (
-      <Layout>
-        {renderButton()}
-        <TopSection />
-        <PopularItinerary />
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
-      {renderButton()}
-      <section className="my-10">
-        <Itinerary />
-      </section>
+      <TopSection handleSubmit={handleSubmit} />
+      <PopularItinerary />
     </Layout>
   );
 }

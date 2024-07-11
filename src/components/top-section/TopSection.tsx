@@ -1,8 +1,13 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
 
 import FormField from "@/src/components/common/form/FormField";
 
-function TopSection() {
+interface Props {
+  handleSubmit: (values: { prompt: string }) => void;
+}
+
+function TopSection({ handleSubmit }: Props) {
   const validatePrompt = (value: string) => {
     let error;
     if (!value) {
@@ -20,12 +25,7 @@ function TopSection() {
       <div className="md:max-w-[700px] m-auto my-5">
         <Formik
           initialValues={{ prompt: "" }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              actions.setSubmitting(false);
-            }, 1000);
-          }}
+          onSubmit={async (values) => handleSubmit(values)}
         >
           {(props) => (
             <Form>
